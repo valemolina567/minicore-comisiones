@@ -6,6 +6,10 @@ Aplicación web desarrollada con **CodeIgniter 4** para gestionar vendedores, re
 
 **Aplicación en producción:** [Mini Core de Ventas y Comisiones](https://minicore-comisiones-mtj4.onrender.com/)
 
+## Video Explicativo - YouTube
+
+https://www.youtube.com/watch?v=VurICASr5aU
+
 ## 📋 Descripción del proyecto
 
 Mini Core de Ventas y Comisiones es una aplicación web que permite administrar la información de vendedores y sus ventas, así como consultar reportes relacionados con las comisiones generadas.
