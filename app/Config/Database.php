@@ -52,33 +52,36 @@ class Database extends Config
     ];
     
     
+
 public function __construct()
 {
     parent::__construct();
 
+    // Primero intenta leer las variables de Render.
+    // Si no existen, utiliza la configuración de .env local.
     $this->default['hostname'] = env(
-        'database.default.hostname',
-        'localhost'
+        'DB_HOST',
+        env('database.default.hostname', 'localhost')
     );
 
     $this->default['username'] = env(
-        'database.default.username',
-        'root'
+        'DB_USER',
+        env('database.default.username', 'root')
     );
 
     $this->default['password'] = env(
-        'database.default.password',
-        ''
+        'DB_PASSWORD',
+        env('database.default.password', '')
     );
 
     $this->default['database'] = env(
-        'database.default.database',
-        'minicore_comisiones'
+        'DB_NAME',
+        env('database.default.database', 'minicore_comisiones')
     );
 
     $this->default['port'] = (int) env(
-        'database.default.port',
-        3306
+        'DB_PORT',
+        env('database.default.port', 3306)
     );
 
     $this->default['DBDriver'] = env(
@@ -91,7 +94,16 @@ public function __construct()
         ''
     );
 
+    // En producción no mostrar errores detallados de la base de datos.
     $this->default['DBDebug'] = ENVIRONMENT !== 'production';
+
+    // Activar TLS para la conexión remota a Aiven.
+    if (env('DB_HOST')) {
+        $this->default['encrypt'] = [
+            'ssl_ca'     => '/etc/ssl/certs/aiven-ca.pem',
+            'ssl_verify' => true,
+        ];
+    }
 
     if (ENVIRONMENT === 'testing') {
         $this->defaultGroup = 'tests';

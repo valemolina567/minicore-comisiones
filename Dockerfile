@@ -1,8 +1,10 @@
+
 FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     unzip \
+    ca-certificates \
     && docker-php-ext-install mysqli pdo_mysql intl \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
@@ -26,6 +28,9 @@ RUN sed -ri \
 WORKDIR /var/www/html
 
 COPY . .
+
+# Copiar el certificado CA de Aiven al contenedor
+COPY docker/ca.pem /etc/ssl/certs/aiven-ca.pem
 
 RUN composer install \
     --no-dev \
