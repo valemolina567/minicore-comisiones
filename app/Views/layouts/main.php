@@ -132,6 +132,7 @@
         <nav>
             <a href="<?= site_url('vendedores') ?>">Vendedores</a>
             <a href="<?= site_url('ventas') ?>">Ventas</a>
+            <a href="<?= site_url('reportes') ?>">Reportes</a>
             <a href="<?= site_url('vendedores/nuevo') ?>">Registrar vendedor</a>
             <a href="<?= site_url('ventas/nuevo') ?>">Registrar venta</a>
         </nav>
